@@ -1,18 +1,31 @@
 services:
-  - type: web # Specifies this is a web service
+  - type: web # Specifies that this is a web service
     name: phpmyadmin # Name of the service
-    env: docker # Specifies the environment as Docker
-    branch: main # The branch in your Git repository
-    repo: https://github.com/MdShamsherAlam/phpMyAdmin # Replace with your repository URL
-    dockerfilePath: Dockerfile # Path to your Dockerfile
-    plan: free # Choose the free plan
-    autoDeploy: true # Automatically deploy on every commit to the branch
-    envVars:
+    env: node # Environment (node is for Node.js but we're using it for simplicity, as Render uses this environment variable setup)
+    region: oregon # Choose your Render region (e.g., oregon, frankfurt)
+    branch: main # The Git branch to deploy from
+    repo: https://github.com/your-repo # Replace with your GitHub repository URL
+    buildCommand: npm install # Build command (you may not need this if you're using Docker)
+    startCommand: npm start # Command to start your app
+    plan: free # Pricing plan (free, starter, or standard)
+    autoDeploy: true # Deploy automatically when code is updated in the branch
+    envVars: # Environment variables for phpMyAdmin
       - key: PMA_HOST
-        value: db # Replace with your Render database host
-      - key: root
-        value: your-database-username # Replace with your Render database username
+        value: db # Host name of the MySQL service, it should match the db service name in the docker-compose file
+      - key: PMA_USER
+        value: root # Database username (from your docker-compose)
       - key: PMA_PASSWORD
-        value: rootpassword # Replace with your Render database password
-      - key: PMA_PORT
-        value: 3306 # MySQL port
+        value: rootpassword # Database password (from your docker-compose)
+  - type: database # MySQL database service (managed by Render)
+    name: university-db # Name of your database service
+    plan: free # You can select the free or any other available database plan
+    envVars:
+      - key: MYSQL_ROOT_PASSWORD
+        value: rootpassword # The root password for the MySQL database
+      - key: MYSQL_DATABASE
+        value: university_hrms # The database name you set in your docker-compose
+      - key: MYSQL_USER
+        value: my_user # The MySQL username for phpMyAdmin
+      - key: MYSQL_PASSWORD
+        value: my_password # The password for the above username
+    region: oregon # You can change to the region where you are deploying
