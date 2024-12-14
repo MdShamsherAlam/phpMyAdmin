@@ -1,32 +1,15 @@
 version: '3.8'
 
 services:
-  db:
-    image: mysql:latest
-    container_name: mysql_container
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: university_hrms
-      MYSQL_USER: my_user
-      MYSQL_PASSWORD: my_password
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-
   phpmyadmin:
     image: phpmyadmin:latest
     container_name: phpmyadmin_container
     restart: always
-    depends_on:
-      - db
     environment:
-      PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: rootpassword
+      PMA_HOST: gateway01.ap-southeast-1.prod.aws.tidbcloud.com # Host of your live DB
+      PMA_PORT: 4000 # Port of your live DB
+      PMA_USER: Z4pBFxR54cTp1fj.root # Username of your live DB
+      PMA_PASSWORD: Ut7ywrLxGMq623Is # Password of your live DB
+      PMA_ABSOLUTE_URI: http://localhost:8080 # Ensure PHPMyAdmin resolves correctly
     ports:
       - "8080:80"
-
-volumes:
-  mysql_data:
