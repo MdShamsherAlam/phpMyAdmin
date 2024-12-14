@@ -1,22 +1,19 @@
 services:
   - type: web
     name: phpmyadmin
-    env: php
-    region: oregon
-    branch: main
-    repo: https://github.com/MdShamsherAlam/phpMyAdmin # Your phpMyAdmin repo URL
-    buildCommand: npm install # If you are using npm for builds (otherwise remove)
-    startCommand: npm start # Or the correct command to start phpMyAdmin
-    plan: free # Pricing plan
-    autoDeploy: true # Automatically deploy when changes are pushed
-    envVars: # Environment variables for phpMyAdmin
+    env: docker
+    branch: main # Replace with your branch name
+    repo: https://github.com/MdShamsherAlam/phpMyAdmin # Replace with your repo URL
+    buildCommand: "" # No build command needed for Dockerized apps
+    startCommand: "" # No start command needed; Docker handles this
+    plan: free # Render's free plan
+    autoDeploy: true
+    envVars:
       - key: PMA_HOST
-        value:https://phpmyadmin-vuz0.onrender.com # Host from your Render MySQL database 
-      - key: PMA_USER
-        value: your_db_username # Your Render MySQL username
-      - key: PMA_PASSWORD
-        value: your_db_password # Your Render MySQL password
+        value: gateway01.ap-southeast-1.prod.aws.tidbcloud.com # Live DB host
       - key: PMA_PORT
-        value: 3306 # Port for MySQL (default is 3306)
-
-
+        value: "4000" # Live DB port
+      - key: PMA_USER
+        value: Z4pBFxR54cTp1fj.root # Live DB username
+      - key: PMA_PASSWORD
+        value: Ut7ywrLxGMq623Is # Live DB password
