@@ -11,7 +11,7 @@ services:
     autoDeploy: true # Deploy automatically when code is updated in the branch
     envVars: # Environment variables for phpMyAdmin
       - key: PMA_HOST
-        value: db # Host name of the MySQL service, it should match the db service name in the docker-compose file
+        value: https://phpmyadmin-vuz0.onrender.com # Host name of the MySQL service, it should match the db service name in the docker-compose file
       - key: PMA_USER
         value: root # Database username (from your docker-compose)
       - key: PMA_PASSWORD
