@@ -4,7 +4,7 @@ services:
     env: node # Environment (node is for Node.js but we're using it for simplicity, as Render uses this environment variable setup)
     region: oregon # Choose your Render region (e.g., oregon, frankfurt)
     branch: main # The Git branch to deploy from
-    repo: https://github.com/your-repo # Replace with your GitHub repository URL
+    repo: https://github.com/MdShamsherAlam/phpMyAdmin # Replace with your GitHub repository URL
     buildCommand: npm install # Build command (you may not need this if you're using Docker)
     startCommand: npm start # Command to start your app
     plan: free # Pricing plan (free, starter, or standard)
