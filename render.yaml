@@ -1,0 +1,18 @@
+services:
+  - type: web # Specifies this is a web service
+    name: phpmyadmin # Name of the service
+    env: docker # Specifies the environment as Docker
+    branch: main # The branch in your Git repository
+    repo: https://github.com/your-repo/phpmyadmin.git # Replace with your repository URL
+    dockerfilePath: Dockerfile # Path to your Dockerfile
+    plan: free # Choose the free plan
+    autoDeploy: true # Automatically deploy on every commit to the branch
+    envVars:
+      - key: PMA_HOST
+        value: db # Replace with your Render database host
+      - key: root
+        value: your-database-username # Replace with your Render database username
+      - key: PMA_PASSWORD
+        value: rootpassword # Replace with your Render database password
+      - key: PMA_PORT
+        value: 3306 # MySQL port
