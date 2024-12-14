@@ -3,7 +3,7 @@ services:
     name: phpmyadmin # Name of the service
     env: docker # Specifies the environment as Docker
     branch: main # The branch in your Git repository
-    repo: https://github.com/your-repo/phpmyadmin.git # Replace with your repository URL
+    repo: https://github.com/MdShamsherAlam/phpMyAdmin # Replace with your repository URL
     dockerfilePath: Dockerfile # Path to your Dockerfile
     plan: free # Choose the free plan
     autoDeploy: true # Automatically deploy on every commit to the branch
